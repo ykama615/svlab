@@ -15,13 +15,13 @@
 
 ```
 svlab
- - WPy64-XXXXX
- - VScode
- - SourceCode
+ ∟ WPy64-XXXXX
+ ∟ VScode
+ ∟ SourceCode
 ```
 
 ## 環境設定(1)
-WPy64-XXXXX - script フォルダ内の *winvscode.bat* を編集する．5行目～6行目の code.exe へのパスを展開した場所への相対パスに変更する．<br>
+WPy64-XXXXX / script フォルダ内の *winvscode.bat* を編集する．5行目～6行目の code.exe へのパスを展開した場所への相対パスに変更する．<br>
 ```
 if exist "%WINPYDIR%\..\t\vscode\code.exe" (
     "%WINPYDIR%\..\t\vscode\code.exe" %*
@@ -62,13 +62,13 @@ WPy64-XXXXX フォルダ直下の *VS Code.exe* をダブルクリックする�
 
 <br>
 
-エクスプローラ メニューから * フォルダーを開く * ボタンをクリックし，環境設定(1)で作成した SourceCode フォルダを選択する．<br>
-> 作成者に関する質問のポップアップは * 信頼する * にチェックを入れる．<br>
+エクスプローラ メニューから *フォルダーを開く* ボタンをクリックし，環境設定(1)で作成した SourceCode フォルダを選択する．<br>
+> 作成者に関する質問のポップアップは *信頼する* にチェックを入れる．<br>
 
 <br>
 
 左のメニューアイコンから *拡張機能* ボタンを押し，*python* 拡張機能を検索してインストールする．<br>
-*python* 拡張機能のページにある *管理* （歯車）ボタンをクリックし， *拡張機能の設定* を選択する．タブ内にある *settings.jsonで編集* を選択する．<br>
+ *python* 拡張機能のページにある *管理* （歯車）ボタンをクリックし， *拡張機能の設定* を選択する．タブ内にある *settings.jsonで編集* を選択する．<br>
 settings.json を以下のように編集し，VS Codeを再起動する．<br>
 ```
 {
