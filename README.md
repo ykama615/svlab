@@ -81,3 +81,31 @@ settings.json を以下のように編集し，VS Codeを再起動する．<br>
     ],
 }
 ```
+
+## Pythonライブラリのインストール
+WPy64-XXXXX フォルダ直下の *VS Code.exe* からVSCodeを起動する．<br>
+*ターミナル* メニューからターミナルウィンドウを開く．
+1. pythonのバージョン確認
+```
+% python -V
+Python X.X.X
+```
+2. インストールされたライブラリの確認
+```
+% pip list
+Package               Version
+--------------------- ------------
+```
+3. 必要なライブラリのインストール
+```
+% pip install opencv-python
+% pip install opencv-contrib-python
+% pip install mediapipe
+% pip install pyqt5
+% pip install pyqtgraph
+% pip install cmake
+
+
+```
+4.   
+
