@@ -179,3 +179,7 @@ Package               Version
 from mylibs.myCapture.camera_selector import *
 ```
 
+> 上記の *settings.json* の設定が正しければ，ライブラリのインポートは，
+> ```
+> import myCapture
+> ```
