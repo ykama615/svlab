@@ -18,7 +18,6 @@ class CameraSelector:
     __bbox = []
 
     def __init__(self, dnum, fps, size, box=None):
-        print("koko")
         if dnum is not None:
             self.__device = dnum
         else:
@@ -43,7 +42,6 @@ class CameraSelector:
         else:
             self.__scarea = [-1, -1, -1, -1]
 
-        print("koko")
         self.camera_connect()
 
     def __set_seed(self):
