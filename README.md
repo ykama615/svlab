@@ -138,6 +138,9 @@ Package               Version
 % pip install pyqtgraph
 % pip install cmake
 
+% pip install pywin32       #スクリーンキャプチャ用
+% pip install pyautogui     #スクリーンキャプチャ用
+
 % pip install pydirectinput #エミュレーション用
 ```
 
