@@ -70,15 +70,47 @@ WPy64-XXXXX フォルダ直下の *VS Code.exe* をダブルクリックする�
 左のメニューアイコンから *拡張機能* ボタンを押し，*python* 拡張機能を検索してインストールする．<br>
  *python* 拡張機能のページにある *管理* （歯車）ボタンをクリックし， *拡張機能の設定* を選択する．タブ内にある *settings.jsonで編集* を選択する．<br>
 settings.json を以下のように編集し，VS Codeを再起動する．<br>
+ - *mylibs* へのパスは自作ライブラリへの参照と補完用．
+
 ```
 {
     "workbench.colorTheme": "選択したテーマ",
     "python.autoComplete.extraPaths": [
-        "..\\..\\..\\..\\WPy64-XXXXX\\python-X.X.X.amd64\\lib\\site-packages"
+        "${workspaceFolder}\\..\\sourcecode\\mylibs",
+        "${workspaceFolder}\\..\\WPy64-39100\\python-3.9.10.amd64\\Lib\\site-packages",
     ],
     "python.analysis.extraPaths": [
-        "..\\..\\..\\..\\WPy64-XXXXX\\python-X.X.X.amd64\\lib\\site-packages"
+        "${workspaceFolder}\\..\\sourcecode\\mylibs",
+        "${workspaceFolder}\\..\\WPy64-39100\\python-3.9.10.amd64\\Lib\\site-packages",
     ],
+}
+```
+
+*settigs.json* に実行環境に読み込ませるライブラリパスを追記する．<br>
+ - 下記はWindows11の場合（powershellがデフォルトでインストールされている環境）．Windows10用にCommand Prompt使用時のライブラリも追記しておく．
+ - *env* は自作ライブラリへのパス．
+
+```
+"terminal.integrated.defaultProfile.windows": "pwsh",
+"terminal.integrated.profiles.windows": {
+    "pwsh": {
+        "source": "PowerShell",
+        "icon": "terminal-powershell",
+        "env": {
+            "PYTHONPATH": "${workspaceFolder}\\..\\sourcecode\\mylibs"
+        }
+    },
+    "Command Prompt": {
+        "path": [
+            "${env:windir}\\Sysnative\\cmd.exe",
+            "${env:windir}\\System32\\cmd.exe"
+        ],
+        "env": {
+            "PYTHONPATH": "${workspaceFolder}\\..\\sourcecode\\mylibs"
+        },
+        "args": [],
+        "icon": "terminal-cmd"
+    },
 }
 ```
 
@@ -97,6 +129,7 @@ Package               Version
 --------------------- ------------
 ```
 3. 必要なライブラリのインストール
+
 ```
 % pip install opencv-python
 % pip install opencv-contrib-python
@@ -105,7 +138,23 @@ Package               Version
 % pip install pyqtgraph
 % pip install cmake
 
+% pip install pydirectinput #エミュレーション用
+```
+
+***
+
+ - dlibはpipでインストール可能だが， *setup.py* が走るので，Cコンパイラ環境とcmakeが必要．<br>
+[Visual Studio Community (無償版)](https://visualstudio.microsoft.com/ja/free-developer-offers/) のVisual C++アプリケーションのインストールを事前に行っておく．
 
 ```
-4.   
+% pip insall cmake
+% pip install dlib
+```
+ - [OpenCVのHaar Cascadeの学習済みサンプルへのリンク](https://github.com/opencv/opencv/tree/master/data/haarcascades)
+ - [dlibの学習済みサンプル等へのリンク](http://dlib.net/files/)
+
+
+4. 自作ライブラリの追加
+
+
 
