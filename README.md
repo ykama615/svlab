@@ -164,7 +164,7 @@ Package               Version
 4. 自作ライブラリの追加
 
 *mylibs* 自作ライブラリの中に， *myCapture* というパッケージ， *camera_selector.py* というクラスを構成する場合，<br>
-*myCapture* 内に，下記のような内容の *\__init\__.py* を作成する必要がある．<br>
+*myCapture* 内に，下記のような内容の *\_\_init\_\_.py* を作成する必要がある．<br>
 
 - フォルダ構成
  ```
@@ -174,7 +174,7 @@ Package               Version
    ∟ __init__.py 
  ```
 
- - \__init\__.py の内容
+ - \_\_init\_\_.py の内容
 ```
 from mylibs.myCapture.camera_selector import *
 ```
