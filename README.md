@@ -139,7 +139,7 @@ Package               Version
 % pip install cmake
 % pip install imutils
 
-% pip install pywin32       #スクリーンキャプチャ用
+% pip install pywin32       #スクリーンキャプチャ用(win32gui)
 % pip install pyautogui     #スクリーンキャプチャ用
 
 % pip install pydirectinput #エミュレーション用
