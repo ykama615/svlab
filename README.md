@@ -22,22 +22,20 @@ svlab
 
 ## 環境設定(1)
 WPy64-XXXXX / script フォルダ内の *winvscode.bat* を編集する．5行目～6行目の code.exe へのパスを展開した場所への相対パスに変更する．<br>
- - original
- ```
- if exist "%WINPYDIR%\..\t\vscode\code.exe" (
-     "%WINPYDIR%\..\t\vscode\code.exe" %*
- ) else (
- ```
 
-➡
-
- - rewrite
- ```
- if exist "%WINPYDIR%\..\..\vscode\code.exe" (
-     "%WINPYDIR%\..\..\vscode\code.exe" %*
- ) else (
- ```
-
+> - original
+>  ```
+>  if exist "%WINPYDIR%\..\t\vscode\code.exe" (
+>      "%WINPYDIR%\..\t\vscode\code.exe" %*
+>  ) else (
+>  ```
+> 
+>  - rewrite
+>  ```
+>  if exist "%WINPYDIR%\..\..\vscode\code.exe" (
+>      "%WINPYDIR%\..\..\vscode\code.exe" %*
+>  ) else (
+> ```
 
 ```
 @echo off
