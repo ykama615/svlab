@@ -22,19 +22,21 @@ svlab
 
 ## 環境設定(1)
 WPy64-XXXXX / script フォルダ内の *winvscode.bat* を編集する．5行目～6行目の code.exe へのパスを展開した場所への相対パスに変更する．<br>
-```
-if exist "%WINPYDIR%\..\t\vscode\code.exe" (
-    "%WINPYDIR%\..\t\vscode\code.exe" %*
-) else (
-```
+ - original
+ ```
+ if exist "%WINPYDIR%\..\t\vscode\code.exe" (
+     "%WINPYDIR%\..\t\vscode\code.exe" %*
+ ) else (
+ ```
 
 ➡
 
-```
-if exist "%WINPYDIR%\..\..\vscode\code.exe" (
-    "%WINPYDIR%\..\..\vscode\code.exe" %*
-) else (
-```
+ - rewrite
+ ```
+ if exist "%WINPYDIR%\..\..\vscode\code.exe" (
+     "%WINPYDIR%\..\..\vscode\code.exe" %*
+ ) else (
+ ```
 
 
 ```
@@ -70,7 +72,7 @@ WPy64-XXXXX フォルダ直下の *VS Code.exe* をダブルクリックする�
 左のメニューアイコンから *拡張機能* ボタンを押し，*python* 拡張機能を検索してインストールする．<br>
  *python* 拡張機能のページにある *管理* （歯車）ボタンをクリックし， *拡張機能の設定* を選択する．タブ内にある *settings.jsonで編集* を選択する．<br>
 settings.json を以下のように編集し，VS Codeを再起動する．<br>
- - *mylibs* へのパスは自作ライブラリへの参照と補完用．
+> *mylibs* へのパスは自作ライブラリへの参照と補完用．
 
 ```
 {
@@ -87,8 +89,8 @@ settings.json を以下のように編集し，VS Codeを再起動する．<br>
 ```
 
 *settigs.json* に実行環境に読み込ませるライブラリパスを追記する．<br>
- - 下記はWindows11の場合（powershellがデフォルトでインストールされている環境）．Windows10用にCommand Prompt使用時のライブラリも追記しておく．
- - *env* は自作ライブラリへのパス．
+> 下記はWindows11の場合（powershellがデフォルトでインストールされている環境）．Windows10用にCommand Prompt使用時のライブラリも追記しておく．
+> *env* は自作ライブラリへのパス．
 
 ```
 "terminal.integrated.defaultProfile.windows": "pwsh",
@@ -137,6 +139,7 @@ Package               Version
 % pip install pyqt5
 % pip install pyqtgraph
 % pip install cmake
+% pip install imutils
 
 % pip install pywin32       #スクリーンキャプチャ用
 % pip install pyautogui     #スクリーンキャプチャ用
@@ -153,11 +156,25 @@ Package               Version
 % pip insall cmake
 % pip install dlib
 ```
+
  - [OpenCVのHaar Cascadeの学習済みサンプルへのリンク](https://github.com/opencv/opencv/tree/master/data/haarcascades)
  - [dlibの学習済みサンプル等へのリンク](http://dlib.net/files/)
 
 
 4. 自作ライブラリの追加
 
+*mylibs* 自作ライブラリの中に， *myCapture* というパッケージ， *camera_selector.py* というクラスを構成する場合，<br>
+*myCapture* 内に，下記のような内容の *\__init\__.py* を作成する必要がある．<br>
 
+- フォルダ構成
+ ```
+ mylibs
+ ∟ myCapture
+   ∟ camera_selector.py
+   ∟ __init__.py 
+ ```
+
+```
+from mylibs.myCapture.camera_selector import *
+```
 
