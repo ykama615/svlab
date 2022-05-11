@@ -174,6 +174,7 @@ Package               Version
    ∟ __init__.py 
  ```
 
+ - \__init\__.py の内容
 ```
 from mylibs.myCapture.camera_selector import *
 ```
