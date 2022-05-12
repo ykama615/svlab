@@ -134,6 +134,7 @@ Package               Version
 % pip install opencv-python
 % pip install opencv-contrib-python
 % pip install mediapipe
+% pip install scipy
 % pip install pyqt5
 % pip install pyqtgraph
 % pip install cmake
