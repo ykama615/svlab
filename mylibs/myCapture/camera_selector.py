@@ -14,7 +14,7 @@ class CameraSelector:
     fps: int
     wt: int
     ht: int
-    __scflag: bool
+    __titleflag: bool
     __bbox = []
 
     def __init__(self, dnum, fps, size, box=None):
@@ -39,8 +39,10 @@ class CameraSelector:
             if len(box) != 4:
                 self.__scarea = [-1, -1, -1, -1]
             self.__scarea = box
+            self.__titleflag = True
         else:
             self.__scarea = [-1, -1, -1, -1]
+            self.__titleflag = False
 
         self.camera_connect()
 
@@ -87,40 +89,40 @@ class CameraSelector:
 
     def read(self):
         if self.__device == 99:
-            if self.__getCtrlClick():
-                if self.__scflag == False:
-                    flag = True
-                    # print(pyautogui.position())
-                    print(win32gui.GetWindowText(
-                        win32gui.GetForegroundWindow()))
-                    x0, y0, x1, y1 = win32gui.GetWindowRect(
-                        win32gui.GetForegroundWindow())
-                    self.__bbox = (x0, y0, x1, y1)
-                    frame = cv2.cvtColor(np.asarray(ImageGrab.grab(
-                        self.__bbox, all_screens=True)), cv2.COLOR_RGB2BGR)
+            if self.__titleflag:
+                self.__titleflag = False
+                print(self.__scarea)
+                x0, y0, x1, y1 = self.__scarea[0], self.__scarea[1], self.__scarea[0] + \
+                    self.__scarea[2], self.__scarea[1]+self.__scarea[3]
+                self.__bbox = (x0, y0, x1, y1)
+            elif self.__getCtrlClick():
+                self.__titleflag = False
+                # print(pyautogui.position())
+                print(win32gui.GetWindowText(
+                    win32gui.GetForegroundWindow()))
+                x0, y0, x1, y1 = win32gui.GetWindowRect(
+                    win32gui.GetForegroundWindow())
+                self.__bbox = (x0, y0, x1, y1)
             elif self.__getShiftClick():
-                if self.__scflag == False:
-                    flag = True
-                    # print(pyautogui.position())
-                    if self.__scarea == [-1, -1, -1, -1]:
-                        self.__scarea = [
-                            0, 0, pyautogui.size()[0], pyautogui.size()[1]]
-                    print(self.__scarea)
-                    x0, y0, x1, y1 = self.__scarea[0], self.__scarea[1], self.__scarea[0] + \
-                        self.__scarea[2], self.__scarea[1]+self.__scarea[3]
-                    self.__bbox = (x0, y0, x1, y1)
-                    frame = cv2.cvtColor(np.asarray(ImageGrab.grab(
-                        self.__bbox, all_screens=True)), cv2.COLOR_RGB2BGR)
-            else:
-                self.__scflag = False
+                self.__titleflag = False
+                # print(pyautogui.position())
+                if self.__scarea == [-1, -1, -1, -1]:
+                    self.__scarea = [
+                        0, 0, pyautogui.size()[0], pyautogui.size()[1]]
+                print(self.__scarea)
+                x0, y0, x1, y1 = self.__scarea[0], self.__scarea[1], self.__scarea[0] + \
+                    self.__scarea[2], self.__scarea[1]+self.__scarea[3]
+                self.__bbox = (x0, y0, x1, y1)
 
             fnum = int((time.perf_counter()-self.__frame_seed)*self.fps)
             if len(self.__bbox) != 0:
+                fnum = int((time.perf_counter()-self.__frame_seed)*self.fps)
                 frame = cv2.cvtColor(np.asarray(ImageGrab.grab(
                     self.__bbox, all_screens=True)), cv2.COLOR_RGB2BGR)
                 return True, fnum, frame
             else:
                 return False, fnum, None
+
         elif self.__device >= 0:
             ret, frame = self.__cap.read()
             fnum = int((time.perf_counter()-self.__frame_seed)*self.fps)
