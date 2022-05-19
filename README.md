@@ -158,6 +158,7 @@ Package               Version
 
  - [OpenCVのHaar Cascadeの学習済みサンプルへのリンク](https://github.com/opencv/opencv/tree/master/data/haarcascades)
  - [dlibの学習済みサンプル等へのリンク](http://dlib.net/files/)
+ - [OpenCV FaceMark APIの説明へのリンク](https://docs.opencv.org/4.x/d7/dec/tutorial_facemark_usage.html)
 
 
 4. 自作ライブラリの追加
