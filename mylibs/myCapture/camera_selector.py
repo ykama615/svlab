@@ -17,7 +17,7 @@ class CameraSelector:
     __titleflag: bool
     __bbox = []
 
-    def __init__(self, dnum, fps, size, box=None):
+    def __init__(self, dnum=None, fps=None, size=None, box=None):
         if dnum is not None:
             self.__device = dnum
         else:
