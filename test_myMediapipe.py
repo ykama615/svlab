@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from itertools import tee
 import cv2
 import myCapture as mycap
 import myPhysiology as mp
@@ -15,6 +16,7 @@ def main():
         start = time.perf_counter()
 
         if ret:
+            '''
             detections = mpd.getFace(frame, False)
             for [box, keys] in detections:
                 if box!=[]:
@@ -30,6 +32,18 @@ def main():
                     scale = abs(int(5 * (z/cap.wt-1.0)))
                     cv2.circle(frame, [x, y], scale, [0,0,255], -1)
             ########################################################################################
+            '''
+            hands = mpd.getHand(frame)
+            print(len(hands))
+            for hand in hands:
+                left = hand[0]
+                right = hand[1]
+                for point in left:
+                    x, y, z = point
+                    cv2.circle(frame, [x, y], 3, [0,0,255], -1)
+                for point in right:
+                    x, y, z = point
+                    cv2.circle(frame, [x, y], 3, [0,0,255], -1)
 
             cv2.imshow("video", frame)
             if cv2.waitKey(int(1000/cap.fps)) == ord('q'):
