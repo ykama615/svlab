@@ -176,7 +176,7 @@ Package               Version
 
  - \_\_init\_\_.py の内容
 ```
-from mylibs.myCapture.camera_selector import *
+from myCapture.camera_selector import *
 ```
 
 > 上記の *settings.json* の設定が正しければ，ライブラリのインポートは，
