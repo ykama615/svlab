@@ -21,7 +21,7 @@ svlab
 ```
 
 ## 環境設定(1)
-WPy64-XXXXX / script フォルダ内の *winvscode.bat* を編集する．5行目～6行目の code.exe へのパスを展開した場所への相対パスに変更する．<br>
+WPy64-XXXXX / scripts フォルダ内の *winvscode.bat* を編集する．5行目～6行目の code.exe へのパスを展開した場所への相対パスに変更する．<br>
 
 > - original
 >  ```
@@ -52,6 +52,12 @@ if exist "%LOCALAPPDATA%\Programs\Microsoft VS Code\code.exe" (
 ))
 ```
 
+WPy64-XXXXX / scripts フォルダ内の *env.bat* を編集する．環境変数 *pythonpath* を追加して，メニュー，ボタンからの実行に適応させる．<br>
+
+```
+set PYTHONPATH=%WINPYDIRBASE%\..\SourceCode\mylibs\;%WINPYDIR%\Lib\site-packages
+```
+
 VSCode フォルダの直下に *data* フォルダ（空）を作成する．<br>
 
 ## 環境設定(2)
@@ -70,11 +76,14 @@ WPy64-XXXXX フォルダ直下の *VS Code.exe* をダブルクリックする�
 左のメニューアイコンから *拡張機能* ボタンを押し，*python* 拡張機能を検索してインストールする．<br>
  *python* 拡張機能のページにある *管理* （歯車）ボタンをクリックし， *拡張機能の設定* を選択する．タブ内にある *settings.jsonで編集* を選択する．<br>
 settings.json を以下のように編集し，VS Codeを再起動する．<br>
+> *update.mode* は VS Code の自動アップデートの設定
 > *mylibs* へのパスは自作ライブラリへの参照と補完用．
 
 ```
 {
     "workbench.colorTheme": "選択したテーマ",
+    "update.mode": "none",
+    "python.defaultInterpreterPath": "${workspaceFolder}\\..\\WPy64-310111\\python-3.10.11.amd64\\python.exe",
     "python.autoComplete.extraPaths": [
         "${workspaceFolder}\\..\\sourcecode\\mylibs",
         "${workspaceFolder}\\..\\WPy64-39100\\python-3.9.10.amd64\\Lib\\site-packages",
@@ -91,14 +100,22 @@ settings.json を以下のように編集し，VS Codeを再起動する．<br>
 > *env* は自作ライブラリへのパス．
 
 ```
-"terminal.integrated.defaultProfile.windows": "pwsh",
+
+"terminal.integrated.defaultProfile.windows": "Windows PowerShell",
 "terminal.integrated.profiles.windows": {
-    "pwsh": {
+    "PowerShell": {
         "source": "PowerShell",
         "icon": "terminal-powershell",
         "env": {
-            "PYTHONPATH": "${workspaceFolder}\\..\\sourcecode\\mylibs"
-        }
+            "PYTHONPATH": "${workspaceFolder}\\..\\sourcecode\\mylibs; ${workspaceFolder}\\..\\WPy64-310111\\python-3.10.11.amd64\\Lib\\site-packages"
+        },
+    },
+    "Windows PowerShell": {
+        "source": "PowerShell",
+        "icon": "terminal-powershell",
+        "env": {
+            "PYTHONPATH": "${workspaceFolder}\\..\\sourcecode\\mylibs; ${workspaceFolder}\\..\\WPy64-310111\\python-3.10.11.amd64\\Lib\\site-packages"
+        },
     },
     "Command Prompt": {
         "path": [
@@ -111,7 +128,7 @@ settings.json を以下のように編集し，VS Codeを再起動する．<br>
         "args": [],
         "icon": "terminal-cmd"
     },
-}
+},
 ```
 
 ## Pythonライブラリのインストール
@@ -140,6 +157,8 @@ Package               Version
 % pip install cmake
 % pip install imutils
 
+% pip install scikit-learns
+
 % pip install pywin32       #スクリーンキャプチャ用(win32gui)
 % pip install pyautogui     #スクリーンキャプチャ用
 
@@ -152,7 +171,7 @@ Package               Version
 [Visual Studio Community (無償版)](https://visualstudio.microsoft.com/ja/free-developer-offers/) のVisual C++アプリケーションのインストールを事前に行っておく．
 
 ```
-% pip insall cmake
+% pip insatll cmake
 % pip install dlib
 ```
 
@@ -181,5 +200,5 @@ from myCapture.camera_selector import *
 
 > 上記の *settings.json* の設定が正しければ，ライブラリのインポートは，
 > ```
-> import myCapture
+> from myCapture import camera_selector
 > ```
