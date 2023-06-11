@@ -130,6 +130,22 @@ settings.json を以下のように編集し，VS Codeを再起動する．<br>
     },
 },
 ```
+## 環境設定(3)
+WPy64-XXXXX の VS Code.exe を実行するための起動用 *.bat* ファイルを作成する<br>
+> 作成環境のルート直下に作成する
+
+```
+svlab
+ ∟ WPy64-XXXXX
+ ∟ VScode
+ ∟ SourceCode
+ ∟ svlab_start.bat
+```
+*.bat* ファイルの内容は以下の通り． *--locale en* を指定すると英語モードで起動する
+```
+start "" ".\WPy64-XXXXX\VS Code.exe" ..\..\SourceCode --locale ja
+exit/b
+```
 
 ## Pythonライブラリのインストール
 WPy64-XXXXX フォルダ直下の *VS Code.exe* からVSCodeを起動する．<br>
